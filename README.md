@@ -59,21 +59,25 @@ graph LR
 <summary><b>📦 Dependencies & Setup</b></summary>
 
 ```python
-# Core ML/NLP frameworks
-transformers==4.35.0
-datasets==2.14.5
-torch==2.0.1+cu118
-bitsandbytes==0.41.1
+# Core ML/NLP Frameworks
+# Using >= to allow pip to install the best compatible versions for the user's system.
+transformers>=4.40.0
+datasets>=2.18.0
+torch>=2.0.0
+bitsandbytes>=0.41.0
+accelerate>=0.29.0
 
-# Data processing
-pandas==2.0.3
-numpy==1.24.3
-scikit-learn==1.3.0
+# Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
 
-# Visualization & monitoring
-matplotlib==3.7.2
-seaborn==0.12.2
-wandb==0.15.8
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# For the interactive Hugging Face Spaces demo (Optional but recommended)
+gradio>=4.0.0
 ```
 
 </details>
