@@ -18,10 +18,8 @@ An advanced Natural Language Processing pipeline that transforms 50,000 IMDb mov
 - **4-bit quantization** enabling enterprise LLM deployment on consumer GPUs
 
 ### 🔗 Quick Links
-- 🚀 **[Live Demo](https://huggingface.co/spaces/your-username/imdb-sentiment-rag)** - Interactive Gradio interface
-- 🤖 **[Fine-tuned Model](https://huggingface.co/your-username/distilbert-imdb-sentiment)** - Ready-to-use sentiment classifier
-- 📊 **[Dataset](https://huggingface.co/datasets/imdb)** - Original IMDb review corpus
-- 📝 **[Technical Blog Post](https://medium.com/@your-username)** - Deep dive into methodology
+
+- 📊 **[Dataset](https://www.kaggle.com/code/jillanisofttech/imdb-movie-reviews-50k)** - Original IMDb review corpus
 
 ---
 
