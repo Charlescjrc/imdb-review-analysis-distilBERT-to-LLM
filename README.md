@@ -11,12 +11,6 @@
 
 An advanced Natural Language Processing pipeline that transforms 50,000 IMDb movie reviews into intelligent, data-driven film criticism through a pioneering two-agent AI system combining specialized sentiment analysis with sophisticated content generation.
 
-<div align="center">
-  <img src="assets/architecture-diagram.png" alt="System Architecture" width="800"/>
-  <br/>
-  <em>Hybrid RAG Architecture: From Raw Reviews to AI-Generated Critique</em>
-</div>
-
 ### 🎯 Key Achievements
 - **93.99%** sentiment classification accuracy on 10,000 test reviews
 - **<5 minutes** processing time for complete 50K review corpus
