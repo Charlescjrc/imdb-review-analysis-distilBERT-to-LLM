@@ -84,11 +84,14 @@ gradio>=4.0.0
 <summary><b>🔧 Data Preprocessing Pipeline</b></summary>
 
 - **Input Format:** Raw CSV with 50,000 entries
+  
 - **Cleaning Operations:** 
   - HTML tag removal
   - Special character normalization
   - Length validation (min: 20 chars, max: 5000 chars)
+    
 - **Label Encoding:** Binary sentiment mapping (positive→1, negative→0)
+  
 - **Data Split:** Stratified 80/20 train/test with seed=42 for reproducibility
 
 </details>
@@ -139,7 +142,7 @@ Guidelines:
 <details>
 <summary><b>⚡ LLM Loading Optimizations</b></summary>
 
-**To run the 8 billion parameter Llama 3 model on a consumer-grade GPU, 4-bit quantization via the bitsandbytes library was utilized. This technique significantly reduces the model's memory footprint from ~32GB to under 6GB with minimal impact on performance.**
+- To run the 8 billion parameter Llama 3 model on a consumer-grade GPU, 4-bit quantization via the bitsandbytes library was utilized. This technique significantly reduces the model's memory footprint from ~32GB to under 6GB with minimal impact on performance.
 
 </details>
 
