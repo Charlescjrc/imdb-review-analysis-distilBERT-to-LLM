@@ -93,32 +93,6 @@ gradio>=4.0.0
 
 </details>
 
-### Phase 2: DistilBERT Fine-Tuning & Optimization
-
-<details>
-<summary><b>🎯 Training Configuration</b></summary>
-
-```python
-training_args = TrainingArguments(
-    output_dir='./distilbert-imdb-sentiment',
-    num_train_epochs=3,
-    per_device_train_batch_size=16,
-    per_device_eval_batch_size=64,
-    warmup_steps=500,
-    weight_decay=0.01,
-    learning_rate=3e-5,
-    fp16=True,  # Mixed precision training
-    evaluation_strategy="epoch",
-    save_strategy="epoch",
-    load_best_model_at_end=True,
-    metric_for_best_model="accuracy",
-    logging_dir='./logs',
-    push_to_hub=True
-)
-```
-
-</details>
-
 <details>
 <summary><b>📊 Performance Metrics</b></summary>
 
@@ -163,27 +137,13 @@ Guidelines:
 </details>
 
 <details>
-<summary><b>⚡ Optimization Techniques</b></summary>
+<summary><b>⚡ LLM Loading Optimizations</b></summary>
 
-- **4-bit Quantization:** Reduces model memory from 32GB to ~6GB
-- **Flash Attention 2:** 2.5x faster inference with memory efficiency
-- **KV-Cache Optimization:** Persistent cache for multi-turn generation
-- **Dynamic Batching:** Adaptive batch sizing based on GPU utilization
+**To run the 8 billion parameter Llama 3 model on a consumer-grade GPU, 4-bit quantization via the bitsandbytes library was utilized. This technique significantly reduces the model's memory footprint from ~32GB to under 6GB with minimal impact on performance.**
 
 </details>
 
 ---
-
-## 📈 Results & Performance Analysis
-
-### 🏆 Benchmark Comparisons
-
-| Approach | Accuracy | Inference Time | Memory Usage | Cost Efficiency |
-|----------|----------|----------------|--------------|-----------------|
-| **Our Hybrid System** | 93.99% | 4.2 min | 8GB | **FREE** (Open Source) |
-| Pure LLM (GPT-4) | 91.2% | 45 min | 32GB | $2.50/1000 reviews |
-| Traditional ML (SVM) | 88.4% | 2.1 min | 2GB | $0.01/1000 reviews |
-| BERT-Large | 94.1% | 12 min | 16GB | $0.08/1000 reviews |
 
 ### 🔬 Ablation Studies
 
@@ -196,38 +156,23 @@ Component removal impact on final critique quality (human evaluation, n=100):
 
 ---
 
-## 🛠️ Installation & Deployment
+## 🛠️ How to Run This Project
 
-### Local Development
+This project was developed entirely within a Kaggle Notebook environment.
 
-```bash
-# Clone repository
-git clone https://github.com/ifieryarrows/imdb-review-analysis-distilBERT-to-LLM.git
-cd imdb-review-analysis-distilBERT-to-LLM
+### 1. **Environment Setup**
+* **Platform:** Kaggle Notebook
+* **Hardware:** 2x T4 GPU accelerator
+* **Docker Image:** "Latest" environment setting (Python 3.10+)
 
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+### 2. **Dependencies**
+All required libraries are listed in the `requirements.txt` file. The main dependencies are `transformers`, `datasets`, `accelerate`, `bitsandbytes`, and `torch`.
 
-# Install dependencies
-pip install -r requirements.txt
+### 3. **Authentication**
+To run the final step involving Meta Llama 3, you need a Hugging Face account, access granted to the Llama 3 model, and a Hugging Face Access Token stored in Kaggle Secrets as `HUGGING_FACE_HUB_TOKEN`.
 
-# Configure Hugging Face authentication
-huggingface-cli login --token YOUR_HF_TOKEN
-
-# Run the pipeline
-python main.py --mode full-pipeline
-```
-
-### Docker Deployment
-
-```bash
-# Build container
-docker build -t imdb-sentiment-rag .
-
-# Run with GPU support
-docker run --gpus all -p 8080:8080 imdb-sentiment-rag
-```
+### 4. **Running the Notebook**
+You can simply open the `.ipynb` file in a compatible environment (like Kaggle, Google Colab, or a local Jupyter setup with the required hardware) and run the cells in sequential order.
 
 ### Cloud Deployment Options
 
@@ -235,35 +180,6 @@ docker run --gpus all -p 8080:8080 imdb-sentiment-rag
 - **Kaggle:** Fork the kernel with P100 GPU enabled
 - **AWS SageMaker:** Use provided `sagemaker_deploy.py` script
 - **Hugging Face Spaces:** Deploy via `spaces_app.py` with Gradio interface
-
----
-
-## 🗂️ Project Structure
-
-```
-imdb-sentiment-analysis/
-├── 📁 data/
-│   ├── raw/                  # Original IMDb dataset
-│   ├── processed/             # Preprocessed data
-│   └── results/               # Analysis outputs
-├── 📁 models/
-│   ├── distilbert-finetuned/ # Trained sentiment model
-│   └── configs/               # Model configurations
-├── 📁 notebooks/
-│   ├── 01_data_exploration.ipynb
-│   ├── 02_model_training.ipynb
-│   └── 03_rag_pipeline.ipynb
-├── 📁 src/
-│   ├── data_processing.py    # Data pipeline utilities
-│   ├── model_training.py     # Fine-tuning scripts
-│   ├── inference.py           # Prediction pipeline
-│   └── rag_generation.py     # LLM critique generation
-├── 📁 tests/                  # Unit and integration tests
-├── 📁 deployment/             # Deployment configurations
-├── requirements.txt
-├── Dockerfile
-└── README.md
-```
 
 ---
 
