@@ -225,7 +225,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Hugging Face team for the Transformers library and model hosting
 - Meta AI for open-sourcing Llama 3
-- IMDb for the movie review dataset
+- Jillani SofTech for the movie review dataset
 - The open-source NLP community for continuous innovation
 
 ---
